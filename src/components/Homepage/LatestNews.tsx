@@ -2,11 +2,15 @@
 import { useServicesQuery } from "@/redux/api/serviceApi";
 import { Avatar, Card, Col, Row, Skeleton } from "antd";
 import ServiceCard from "../ui/ServiceCard";
+import { useBlogsQuery } from "@/redux/api/newsApi";
+import BlogCard from "../ui/BlogCard";
 const { Meta } = Card;
-const AvailableServices = () => {
-  const { data, isLoading } = useServicesQuery({ limit: 3 });
-  console.log("fdjsf", data);
-  if (isLoading) return <Skeleton style={{padding: 20}} loading={isLoading} avatar active />;
+const LatestNews = () => {
+  const { data, isLoading } = useBlogsQuery({ limit: 3 });
+  if (isLoading)
+    return (
+      <Skeleton style={{ padding: 20 }} loading={isLoading} avatar active />
+    );
 
   if (data?.data?.length === 0) return <div>No services available</div>;
   return (
@@ -19,11 +23,11 @@ const AvailableServices = () => {
           margin: "20px",
         }}
       >
-        Our Latest Services
+        Our Latest News
       </h2>
-      <ServiceCard data={data?.data} />
+      <BlogCard data={data?.data} />
     </div>
   );
 };
 
-export default AvailableServices;
+export default LatestNews;

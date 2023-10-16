@@ -5,6 +5,7 @@ import Providers from "@/lib/Providers";
 import Navbar from "@/components/ui/Navbar";
 import { Button, Col, Row } from "antd";
 import Link from "next/link";
+import { Footer } from "antd/es/layout/layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,17 +25,25 @@ export default function RootLayout({
         <Providers>
           <Row justify="space-between" align="middle">
             <Col span={18}>
-              <Link style={{ margin: 10 }} href="/">
-                <Button type="text" style={{}}>
+              <Button type="text" size="large" content="Hello">
+                <Link
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                  href="/"
+                >
                   Career Consultation
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </Col>
             <Col span={6}>
               <Navbar />
             </Col>
           </Row>
           {children}
+          <Footer style={{ textAlign: "center" }}>
+            <p>&copy; 2023 Career Consultation. All rights reserved.</p>
+          </Footer>
         </Providers>
       </body>
     </html>

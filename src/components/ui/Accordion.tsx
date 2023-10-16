@@ -2,29 +2,29 @@ import { Collapse } from "antd";
 const { Panel } = Collapse;
 
 export type ItemProps = {
-  key: string;
-  label: string;
-  children: React.ReactNode | React.ReactElement;
+  id: string;
+  question: string;
+  answer: string;
   isTaken?: boolean;
 };
 
-type UMCollapseProps = {
+type AccordionProps = {
   items: ItemProps[];
   onChange?: (el: string | string[] | "") => void;
   defaultActiveKey?: string | string[];
 };
 
-const UMCollapse = ({
+const Accordion = ({
   items,
   onChange,
   defaultActiveKey = ["1"],
-}: UMCollapseProps) => {
+}: AccordionProps) => {
   return (
     <Collapse defaultActiveKey={defaultActiveKey} onChange={onChange}>
       {items?.map((item) => {
         return (
-          <Panel header={item?.label} key={item?.key}>
-            {item?.children}
+          <Panel header={item?.question} key={item?.id}>
+            {item?.answer}
           </Panel>
         );
       })}
@@ -32,4 +32,4 @@ const UMCollapse = ({
   );
 };
 
-export default UMCollapse;
+export default Accordion;

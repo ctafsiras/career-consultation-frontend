@@ -25,29 +25,5 @@ instance.interceptors.request.use(
   }
 );
 
-// Add a response interceptor
-instance.interceptors.response.use(
-  //@ts-ignore
-  function (response) {
-    const responseObject: ResponseSuccessType = {
-      data: response?.data?.data,
-      meta: response?.data?.meta,
-    };
-    return responseObject;
-  },
-  async function (error) {
-    if (error?.response?.status === 403) {
-    } else {
-      const responseObject: IGenericErrorResponse = {
-        statusCode: error?.response?.data?.statusCode || 500,
-        message: error?.response?.data?.message || "Something went wrong",
-        errorMessages: error?.response?.data?.message,
-      };
-      return responseObject;
-    }
-
-    // return Promise.reject(error);
-  }
-);
 
 export { instance };
