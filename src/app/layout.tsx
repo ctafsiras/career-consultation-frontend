@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import Providers from "@/lib/Providers";
 import Navbar from "@/components/ui/Navbar";
 import { Button, Col, Row } from "antd";
-import Title from "antd/es/skeleton/Title";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,13 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Providers>
-      <html lang="en">
-        <body>
+    <html lang="en">
+      <body>
+        <Providers>
           <Row justify="space-between" align="middle">
             <Col span={18}>
               <Link style={{ margin: 10 }} href="/">
-                <Button type="text" style={{}}>Career Consultation</Button>
+                <Button type="text" style={{}}>
+                  Career Consultation
+                </Button>
               </Link>
             </Col>
             <Col span={6}>
@@ -34,8 +35,8 @@ export default function RootLayout({
             </Col>
           </Row>
           {children}
-        </body>
-      </html>
-    </Providers>
+        </Providers>
+      </body>
+    </html>
   );
 }
