@@ -1,18 +1,18 @@
 "use client";
-import { useServicesQuery } from "@/redux/api/serviceApi";
+
 import { Avatar, Card, Col, Row, Skeleton } from "antd";
-import ServiceCard from "../ui/ServiceCard";
 import { useBlogsQuery } from "@/redux/api/newsApi";
 import BlogCard from "../ui/BlogCard";
 const { Meta } = Card;
 const LatestNews = () => {
-  const { data, isLoading } = useBlogsQuery({ limit: 3 });
+  const { data, isLoading } = useBlogsQuery({});
   if (isLoading)
     return (
       <Skeleton style={{ padding: 20 }} loading={isLoading} avatar active />
     );
 
-  if (data?.data?.length === 0) return <div>No services available</div>;
+  if (data?.data?.length === 0) return <div>No 
+    articles available</div>;
   return (
     <div style={{ padding: "20px" }}>
       <h2
