@@ -24,7 +24,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Row justify="space-between" align="middle">
-            <Col span={18}>
+            <Col span={12}>
               <Button type="text" size="large" content="Hello">
                 <Link
                   style={{
@@ -36,8 +36,8 @@ export default function RootLayout({
                 </Link>
               </Button>
             </Col>
-            <Col span={6}>
-              <Row justify="end">
+            <Col span={12}>
+              <Row justify="start">
                 <Navbar />
               </Row>
             </Col>

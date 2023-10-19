@@ -16,47 +16,46 @@ import { authKey } from "@/constants/storageKey";
 import { usePathname, useRouter } from "next/navigation";
 import path from "path";
 
-const items: MenuProps["items"] = [
-  {
-    label: <Link href="/">Home</Link>,
-    key: "home",
-    icon: <HomeOutlined />,
-  },
-  {
-    label: <Link href="/service">Services</Link>,
-    key: "service",
-    icon: <HomeOutlined />,
-  },
-  {
-    label: <Link href="/login">Login</Link>,
-    key: "login",
-    icon: <LoginOutlined />,
-  },
-  {
-    label: <Link href="/signup">Sign Up</Link>,
-    key: "signup",
-    icon: <UserAddOutlined />,
-  },
-];
-
-const authItems: MenuProps["items"] = [
-  {
-    label: (
-      <Link href="/login">
-        <Button onClick={() => removeUserInfo(authKey)} danger type="primary">
-          Logout
-        </Button>
-      </Link>
-    ),
-    key: "login",
-  },
-];
-
 const Navbar: React.FC = () => {
   const [role, setRole] = useState(null);
   const router = useRouter();
   const [current, setCurrent] = useState("mail");
   const pathname = usePathname();
+  const items: MenuProps["items"] = [
+    {
+      label: <Link href="/">Home</Link>,
+      key: "home",
+      icon: <HomeOutlined />,
+    },
+    {
+      label: <Link href="/service">Services</Link>,
+      key: "service",
+      icon: <HomeOutlined />,
+    },
+    role && {
+      label: <Link href="/profile">Profile</Link>,
+      key: "profile",
+      icon: <HomeOutlined />,
+    },
+    role && {
+      label: (
+        <Button onClick={() => removeUserInfo(authKey)} danger type="primary">
+          Logout
+        </Button>
+      ),
+      key: "login",
+    },
+    !role && {
+      label: <Link href="/login">Login</Link>,
+      key: "login",
+      icon: <LoginOutlined />,
+    },
+    !role && {
+      label: <Link href="/signup">Sign Up</Link>,
+      key: "signup",
+      icon: <UserAddOutlined />,
+    },
+  ];
 
   useEffect(() => {
     const { role } = getUserInfo() as any;
@@ -68,26 +67,16 @@ const Navbar: React.FC = () => {
     router.push("/login");
   };
   const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
     setCurrent(e.key);
   };
   return (
     <>
-      {role ? (
-        <Menu
-          onClick={onClick}
-          selectedKeys={[current]}
-          mode="horizontal"
-          items={authItems}
-        />
-      ) : (
-        <Menu
-          onClick={onClick}
-          selectedKeys={[current]}
-          mode="horizontal"
-          items={items}
-        />
-      )}
+      <Menu
+        onClick={onClick}
+        selectedKeys={[current]}
+        mode="horizontal"
+        items={items}
+      />
     </>
   );
 };

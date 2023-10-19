@@ -18,8 +18,7 @@ const SideBar = () => {
 
   return (
     <Sider
-      collapsible
-      collapsed={collapsed}
+      collapsed={false}
       onCollapse={(value) => setCollapsed(value)}
       width={280}
       style={{
@@ -33,7 +32,8 @@ const SideBar = () => {
     >
       <div
         style={{
-          color: "white",
+          color: "black",
+          backgroundColor: "grey",
           fontSize: "2rem",
           textAlign: "center",
           fontWeight: "bold",
@@ -41,12 +41,14 @@ const SideBar = () => {
           padding: "10px 0px",
         }}
       >
-        UMS
+        Dashboard
       </div>
       <Menu
-        theme="dark"
+    
+        theme="light"
         defaultSelectedKeys={["1"]}
         mode="inline"
+        style={{height: "100vh"}}
         items={sidebarItems(role)}
       />
     </Sider>

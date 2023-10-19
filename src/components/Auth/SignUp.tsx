@@ -25,7 +25,7 @@ const SignUpPage = () => {
       console.log(res);
       if (res?.token) {
         storeUserInfo({ accessToken: res?.token });
-        router.push("/profile");
+        router.push("/");
         message.success("User created successfully!");
       } else {
         message.error("Invalid credentials!");

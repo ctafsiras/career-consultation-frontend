@@ -5,6 +5,7 @@ import { isLoggedIn } from "@/services/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Loading from "../loading";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const userLoggedIn = isLoggedIn();
@@ -27,9 +28,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           height: "100vh",
         }}
       >
-        <Space>
-          <Spin tip="Loading" size="large"></Spin>
-        </Space>
+        <Loading />
       </Row>
     );
   }

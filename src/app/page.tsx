@@ -12,6 +12,7 @@ const HomePage = () => {
       <Feedback />
       <LatestNews />
       {/* <FAQ /> */}
+      {/* <Events /> */}
     </>
   );
 };

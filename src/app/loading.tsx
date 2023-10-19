@@ -1,6 +1,8 @@
 import { Row, Space, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const Loading = () => {
+  const antIcon = <LoadingOutlined style={{ fontSize: 54 }} spin />;
   return (
     <Row
       justify="center"
@@ -10,7 +12,7 @@ const Loading = () => {
       }}
     >
       <Space>
-        <Spin tip="Loading" size="large"></Spin>
+        <Spin indicator={antIcon} />
       </Space>
     </Row>
   );
