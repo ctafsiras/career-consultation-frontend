@@ -1,13 +1,5 @@
 import type { MenuProps } from "antd";
-import {
-  ProfileOutlined,
-  TableOutlined,
-  AppstoreOutlined,
-  ScheduleOutlined,
-  ThunderboltOutlined,
-  CreditCardOutlined,
-  FileTextOutlined,
-} from "@ant-design/icons";
+import { ProfileOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { USER_ROLE } from "./role";
 export const sidebarItems = (role: string) => {
