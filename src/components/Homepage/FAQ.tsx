@@ -26,12 +26,12 @@ const FAQ = () => {
       >
         Frequently Asked Questions
       </h2>
-      <Row gutter={[150, 20]} justify='center' align='middle'>
+      <Row gutter={[30, 20]} justify='center' align='middle'>
         <Col span={12}>
           <Accordion items={data?.data} />
         </Col>
         <Col span={12}>
-          <Image height={100} width={80} src={QuestionImage} alt="FAQ" layout="responsive"/>
+          <Image height={100} width={100} src={QuestionImage} alt="FAQ" layout="responsive"/>
         </Col>
       </Row>
     </div>
