@@ -7,13 +7,11 @@ export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     // get all
     users: build.query({
-      query: (arg?: Record<string, any>) => {
-        return {
-          url: USER_URL,
-          method: "GET",
-          params: arg,
-        };
-      },
+      query: (arg?: Record<string, any>) => ({
+        url: USER_URL,
+        method: "GET",
+        params: arg,
+      }),
       providesTags: [tagTypes.user],
     }),
     // get single

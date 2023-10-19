@@ -37,7 +37,9 @@ export default function RootLayout({
               </Button>
             </Col>
             <Col span={6}>
-              <Navbar />
+              <Row justify="end">
+                <Navbar />
+              </Row>
             </Col>
           </Row>
           {children}

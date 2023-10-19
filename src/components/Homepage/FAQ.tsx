@@ -31,7 +31,7 @@ const FAQ = () => {
           <Accordion items={data?.data} />
         </Col>
         <Col span={12}>
-          <Image height={100} width={100} src={QuestionImage} alt="FAQ" layout="responsive"/>
+          <Image height={100} width={80} src={QuestionImage} alt="FAQ" layout="responsive"/>
         </Col>
       </Row>
     </div>

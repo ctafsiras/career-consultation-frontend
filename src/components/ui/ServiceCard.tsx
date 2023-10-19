@@ -7,7 +7,7 @@ export default function ServiceCard({ data }: { data: any }) {
         <Col color="red" key={service.id} span={8}>
           <Card title={service.name} bordered={true}>
             <p>{service.description}</p>
-            <h4>Price: {service.price}</h4>
+            <h4>Price: ${service.price}</h4>
             <Button type="primary">Book</Button>
           </Card>
         </Col>

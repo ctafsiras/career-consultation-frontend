@@ -39,7 +39,7 @@ const FormInput = ({
             color: "red",
           }}
         >
-          *
+          * {" "}
         </span>
       ) : null}
       {label ? label : null}
@@ -49,6 +49,7 @@ const FormInput = ({
         render={({ field }) =>
           type === "password" ? (
             <Input.Password
+              required={required}
               type={type}
               size={size}
               placeholder={placeholder}
@@ -57,6 +58,7 @@ const FormInput = ({
             />
           ) : (
             <Input
+              required={required}
               type={type}
               size={size}
               placeholder={placeholder}

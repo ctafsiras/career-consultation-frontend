@@ -5,10 +5,7 @@ import ServiceCard from "../ui/ServiceCard";
 const { Meta } = Card;
 const AvailableServices = () => {
   const { data, isLoading } = useServicesQuery({ limit: 3 });
-  console.log("fdjsf", data);
-  if (isLoading) return <Skeleton style={{padding: 20}} loading={isLoading} avatar active />;
-
-  if (data?.data?.length === 0) return <div>No services available</div>;
+  console.log(data);
   return (
     <div style={{ padding: "20px" }}>
       <h2
@@ -21,7 +18,13 @@ const AvailableServices = () => {
       >
         Our Latest Services
       </h2>
-      <ServiceCard data={data?.data} />
+      {isLoading ? (
+        <Skeleton style={{ padding: 20 }} loading={isLoading} avatar active />
+      ) : data?.data?.length === 0 ? (
+        <div>No services available</div>
+      ) : (
+        <ServiceCard data={data?.data} />
+      )}
     </div>
   );
 };

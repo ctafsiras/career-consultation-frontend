@@ -1,38 +1,39 @@
 "use client";
 import { Button, Col, Input, Row, message } from "antd";
-import loginImage from "../../assets/login-image.png";
-import Image from "next/image";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 
 import { storeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
-import { useLoginUserMutation } from "@/redux/api/userApi";
+import { useAddUserMutation, useLoginUserMutation } from "@/redux/api/userApi";
 
 type FormValues = {
   id: string;
   password: string;
 };
 
-const LoginPage = () => {
-  const [loginUser] = useLoginUserMutation();
+const SignUpPage = () => {
+  const [addUser] = useAddUserMutation();
   const router = useRouter();
 
   // console.log(isLoggedIn());
 
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
-      const res = await loginUser({ ...data }).unwrap();
-      // console.log(res);
-      if (res?.accessToken) {
+      const res = await addUser({ ...data }).unwrap();
+      console.log(res);
+      if (res?.token) {
+        storeUserInfo({ accessToken: res?.token });
         router.push("/profile");
-        message.success("User logged in successfully!");
+        message.success("User created successfully!");
+      } else {
+        message.error("Invalid credentials!");
       }
-      storeUserInfo({ accessToken: res?.accessToken });
       // console.log(res);
     } catch (err: any) {
       console.error(err.message);
+      message.error("Invalid credentials!");
     }
   };
 
@@ -44,20 +45,30 @@ const LoginPage = () => {
         minHeight: "100vh",
       }}
     >
-      {/* <Col sm={12} md={16} lg={10}>
-        <Image src={loginImage} width={500} alt="login image" />
-      </Col> */}
       <Col sm={12} md={8} lg={8}>
         <h1
           style={{
             margin: "15px 0px",
           }}
         >
-          Login
+          Create Your Account
         </h1>
         <div>
           <Form submitHandler={onSubmit}>
             <div>
+              <FormInput
+                name="name"
+                type="text"
+                size="large"
+                label="User Name"
+                required
+              />
+            </div>
+            <div
+              style={{
+                margin: "15px 0px",
+              }}
+            >
               <FormInput
                 name="email"
                 type="text"
@@ -79,9 +90,19 @@ const LoginPage = () => {
                 required
               />
             </div>
-            <Button type="primary" htmlType="submit">
-              Login
-            </Button>
+            <Row justify="end">
+              <Button
+                type="link"
+                onClick={() => {
+                  router.push("/login");
+                }}
+              >
+                Already have an account?
+              </Button>
+              <Button type="primary" htmlType="submit">
+                Sign Up
+              </Button>
+            </Row>
           </Form>
         </div>
       </Col>
@@ -89,4 +110,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
